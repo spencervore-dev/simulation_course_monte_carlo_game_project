@@ -1,0 +1,32 @@
+Environment Setup on Mac.
+
+I had to configure my python development environment from scratch since I recently reimaged my machine, so here is kind of how I did it, except there was a bit more hacking around. Feel free to set up something different though if you have a different python setup that works better for you.
+
+1) Install Xcode (can be found via mac app store). Takes a long time to download... why do I need 11GB's?
+
+2) Agree to Xcode license agreement in terminal. You will be asked to enter your password to run command in terminal as sudo:
+sudo xcodebuild -license
+
+3) Set up python virtual envs using these instructions. I installed mine with the --user option.
+https://stackoverflow.com/questions/49470367/install-virtualenv-and-virtualenvwrapper-on-macos
+
+I had a few bugs, and found these posts to also be helpful
+https://stackoverflow.com/questions/29486113/problems-with-python-and-virtualenvwrapper-after-updating-no-module-named-virtu
+https://ma.ttias.be/mac-os-xcrun-error-invalid-active-developer-path-missing-xcrun/
+
+My final ~/.zshrc file looks like this:
+export VIRTUALENVWRAPPER_PYTHON=/usr/bin/python3
+source ~/Library/Python/3.8/bin/virtualenvwrapper.sh
+PATH=$PATH:~/Library/Python/3.8/bin 
+
+
+3) Once python virtualenvs are installed, make a virtual environment
+mkvirtualenv miniproj1
+
+4) Switch to virtualenv to run python scripts
+workon miniproj1
+
+5) I decided to set up vim as my python IDE. I put this guys example in my ~/.vimrc file.
+https://www.fullstackpython.com/vim.html
+
+5) 
