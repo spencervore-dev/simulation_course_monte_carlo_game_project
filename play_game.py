@@ -80,7 +80,8 @@ def play_game():
         # Update turn number
         GameState['cycle_number'] += 1
 
-
+# this is the number of iterations
+iterations = 10000
 
 # This is a pretty standard piece of boilerplate python.
 # It only runs the program if this script is executed
