@@ -20,13 +20,12 @@ source ~/Library/Python/3.8/bin/virtualenvwrapper.sh
 PATH=$PATH:~/Library/Python/3.8/bin 
 
 
-3) Once python virtualenvs are installed, make a virtual environment
+4) Once python virtualenvs are installed, make a virtual environment
 mkvirtualenv miniproj1
 
-4) Switch to virtualenv to run python scripts
+5) Switch to virtualenv to run python scripts
 workon miniproj1
 
-5) I decided to set up vim as my python IDE. I put this guys example in my ~/.vimrc file.
+6) I decided to set up vim as my python IDE. I put this guys example in my ~/.vimrc file.
 https://www.fullstackpython.com/vim.html
 
-5) 

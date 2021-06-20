@@ -26,14 +26,15 @@ and the vim text editor.
 Once you have your python environment set up, you can run this script in 
 the terminal by running the play_game.py code as a script like this:
 
-`python play_game.py`
+`python play_game.py {single|multi}`
 
-Optionally, you can also pass in a random seed as a command line argument
-if you want to get the same result each time:
+`python play_game.py single` will play one round of the game.
 
-`python play_game.py 12345`
+`python play_game.py multi` will play multiple rounds of the game and
+    save all the game results to do the Monte Carlo Simulation. 
+    Multi-mode will also produce a visual histogram showing the
+    distribution of the number of cycles accross all games.
 
-If there's no seed, the random seed defaults to the system time.
-
-This script will play the game many many times and will generate a plot
-of the distribution of cycle times.
+ `python play_game --help` will display information about additional
+    command line arguments that are available to tweak the behavior
+    of how the simulation runs... so use help for more information.
