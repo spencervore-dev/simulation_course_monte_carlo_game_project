@@ -10,10 +10,14 @@ in the ISYE6644 - Simulation course at Georgia Tech.
 This code was developed in a Python 3.8.2 environment, so first you will
 need to set up one of these. Probably any python close to 3.8ish should work.
 
+Install a few third party libraries once you have your Python 3.8 environment 
+using:
+
+pip install -r requirements.txt
+
 I added some notes on how I set up my own development python environment in 
 the configure_env.txt file, or you can do something else (like just install 
-anaconda and make a virtual environment using that). There are no third party
-python packages or libraries to install. This all runs in base python. :)
+anaconda and make a virtual environment using that).  
 
 I developed this on a Mac using python virtualenv to build my environment
 and the vim text editor.
@@ -31,10 +35,5 @@ if you want to get the same result each time:
 
 If there's no seed, the random seed defaults to the system time.
 
-### Integrate it
-
-The next step would be to run this game many many times to get an idea
-of what outcomes are expected. You could import the play_game function
-into a different script, and then put that into a loop, or something.
-
-
+This script will play the game many many times and will generate a plot
+of the distribution of cycle times.
