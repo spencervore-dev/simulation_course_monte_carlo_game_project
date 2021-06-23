@@ -45,13 +45,14 @@ def take_turn(player, verbose=False, print_end_state=False):
 
         # Check if current player has lost the game
         if GameState[player] == 0:
-            if verbose or print_end_state:
+           GameState['game_over'] = True
+           GameState['loser'] = player
+           if verbose or print_end_state:
                 print("\n\nEND OF GAME")
                 print(f"Player {player} has no coins to put into the pot. They lose. :)")
                 print(f"Game ended on cycle number {GameState['cycle_number']}")
                 print(f"Final game state is {GameState}.\n\n")
-            GameState['game_over'] = True
-            return GameState['cycle_number']
+           return GameState['cycle_number']
 
         # If player didn't lose, update game state
         GameState[player] -= 1
@@ -80,7 +81,8 @@ def play_game(verbose=False, print_end_state=False):
 
     # Define initial game state - number of coins in each category
     global GameState
-    GameState = {'A': 4, 'B': 4, 'pot': 2, 'cycle_number': 1, 'game_over': False}
+    GameState = {'A': 4, 'B': 4, 'pot': 2, 'cycle_number': 0,
+                'game_over': False, 'loser': '?'}
 
     # Calculate total coins in the system for validation
     global total_coins
@@ -91,13 +93,14 @@ def play_game(verbose=False, print_end_state=False):
         if verbose: print(f"\nCYCLE NUMBER: {GameState['cycle_number']}")
         if verbose: print(f"\nCurrent Game State is {GameState}\n")
         take_turn('A', verbose, print_end_state)
+
         if verbose: print(f"\nCurrent Game State is {GameState}\n")
-        take_turn('B', verbose, print_end_state)
+        if not GameState['game_over']: take_turn('B', verbose, print_end_state)
 
         # Update turn number
         GameState['cycle_number'] += 1
 
-    return GameState['cycle_number']
+    return (GameState['cycle_number'], GameState['loser'])
 
 
 def repeat_game(n=10000, verbose=False, print_end_state=True, make_charts=True):
@@ -112,11 +115,13 @@ def repeat_game(n=10000, verbose=False, print_end_state=True, make_charts=True):
 
     #List of cycles per game
     cycles = []
+    losers = {'A': 0, 'B': 0}
 
     #Loop to play the game
     for i in range(n):
-        cycles_in_game = play_game(verbose=verbose, print_end_state=False)
+        cycles_in_game, who_lost = play_game(verbose=verbose, print_end_state=False)
         cycles.append(cycles_in_game)
+        losers[who_lost] +=1
         if verbose: print(cycles)
 
     # Find the average of the cycle lengths
@@ -131,7 +136,8 @@ def repeat_game(n=10000, verbose=False, print_end_state=True, make_charts=True):
         min_cycles = min(cycles)
         print(f"The min number of cycles is {min_cycles}")
         max_cycles = max(cycles)
-        print(f"The max number of cycles is {max_cycles}\n")
+        print(f"The max number of cycles is {max_cycles}")
+        print(f"Player A lost {losers['A']} games and Player B lost {losers['B']} games\n")
         print(f"Justin Bieber rocks! =P")
 
     #Plot a histogram of the cycle lengths
